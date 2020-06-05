@@ -5,13 +5,9 @@ import UserRoutes from './routes/user';
 import ProductRoutes from './routes/product';
 import './database';
 
-const config = require('./config');
-
 
 // Inicializaciones
 const app = express();
-const cors = require('cors');
-
 
 // Config
 app.set('port', process.env.PORT || 3000);
@@ -19,7 +15,15 @@ app.set('port', process.env.PORT || 3000);
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors(config.application.cors.server));
+// Configurar cabeceras y cors
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
 
 // Routes
 app.use('/', IndexRoutes);
