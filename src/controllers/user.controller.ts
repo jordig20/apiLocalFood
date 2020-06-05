@@ -76,6 +76,18 @@ class UserController {
         });
     }
 
+    public async getOne(req: Request, res: Response) {
+        const id = new ObjectId(req.params.id);
+
+        try {
+            const users: User[] = await UserModel.find({ _id: id });
+            res.send(users);
+        } catch (e) {
+            res.send(e);
+        }
+    }
+
+
 }
 
 export const user: UserController = new UserController();

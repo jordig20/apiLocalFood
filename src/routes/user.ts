@@ -5,6 +5,7 @@ const router: Router = Router();
 
 router.post('/add', user.addUser);
 router.get('/allusers/:nameCity', user.allUsers);
+router.get('/getone/:id', user.getOne);
 router.get('/:nameCity/:type', user.getUsersCity);
 router.put('/update/:id', user.update);
 router.delete('/delete/:id', user.delete);
