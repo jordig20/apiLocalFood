@@ -46,13 +46,17 @@ class UserController {
 
     // Update de un usuario
     public async update(req: Request, res: Response) {
-        try {
-            const id = new ObjectId(req.params.id);
-            const user: User[] = await UserModel.find({ _id: id });
-            res.send(user);
-        } catch (e) {
-            res.send(e);
-        }
+
+        UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+            (err, todo) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                return res.send(todo);
+            },
+        );
+
+
     }
 
     // Delete de un usuario
