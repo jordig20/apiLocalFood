@@ -38,25 +38,22 @@ class UserController {
         try {
             const city: string = req.params.nameCity.toLowerCase().trim();
             const users: User[] = await UserModel.find({ city: city });
-            res.send(users);
+            res.status(200).send(users);
         } catch (e) {
-            res.send(e);
+            res.status(500).send(e);
         }
     }
 
     // Update de un usuario
     public async update(req: Request, res: Response) {
-
-        UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
+        await UserModel.findByIdAndUpdate(req.params.id, req.body, { new: true },
             (err, todo) => {
                 if (err) {
                     return res.status(500).send(err);
                 }
-                return res.send(todo);
+                return res.status(200).send(todo);
             },
         );
-
-
     }
 
     // Delete de un usuario

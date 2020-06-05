@@ -5,7 +5,6 @@ import UserRoutes from './routes/user';
 import ProductRoutes from './routes/product';
 import './database';
 
-
 // Inicializaciones
 const app = express();
 
@@ -15,6 +14,7 @@ app.set('port', process.env.PORT || 3000);
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 // Configurar cabeceras y cors
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -23,7 +23,6 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
-
 
 // Routes
 app.use('/', IndexRoutes);

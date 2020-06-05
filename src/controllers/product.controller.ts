@@ -16,13 +16,27 @@ class ProductController {
     }
 
     public async listById(req: Request, res: Response) {
+        const id = new ObjectId(req.params.id);
         try {
-            const id = new ObjectId(req.params.id);
             const products: Product[] = await ProductModel.find({ userId: id });
             res.send(products);
         } catch (e) {
             res.send(e);
         }
+    }
+
+    // Update de un producto
+    public async update(req: Request, res: Response) {
+        const id = ObjectId(req.params.id);
+        const update: Product = req.body;
+        await ProductModel.findByIdAndUpdate(id, update, { new: true },
+            (err, todo) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                return res.status(200).send('OK');
+            },
+        );
     }
 }
 
