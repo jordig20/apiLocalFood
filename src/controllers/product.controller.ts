@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import ProductModel, { Product } from '../models/product.model';
+import UserModel, { User } from '../models/user.model';
 
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -37,6 +38,25 @@ class ProductController {
                 return res.status(200).send('OK');
             },
         );
+    }
+
+    // Devuelve productos por ciudad
+    public async getProductsByCity(req: Request, res: Response) {
+        const city: string = req.params.city;
+        const users: Array<User> = await UserModel.find({ city: city }, async (err, users) => {
+            if (err) {
+                return res.status(500).send(err);
+            } else {
+                let result = users.map(user => user._id);
+                await ProductModel.find({ userId: { $in: result } }, (err, products) => {
+                    if (err) {
+                        return res.status(500).send(err);
+                    } else {
+                        return res.status(200).send(products);
+                    }
+                });
+            }
+        });
     }
 }
 

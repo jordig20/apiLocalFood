@@ -59,7 +59,6 @@ class UserController {
     // Delete de un usuario
     public async delete(req: Request, res: Response) {
         const id = new ObjectId(req.params.id);
-
         await UserModel.findById(id, (err, user) => {
             if (err) {
                 res.status(500).send(
@@ -79,7 +78,6 @@ class UserController {
 
     public async getOne(req: Request, res: Response) {
         const id = new ObjectId(req.params.id);
-
         try {
             const users: User[] = await UserModel.find({ _id: id });
             res.send(users);
@@ -87,8 +85,6 @@ class UserController {
             res.send(e);
         }
     }
-
-
 }
 
 export const user: UserController = new UserController();
