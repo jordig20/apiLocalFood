@@ -1,16 +1,17 @@
 import mongoose, { model, Schema } from 'mongoose';
 
 const UserSchema = new Schema({
-    type: { type: String, enum: ['restaurant', 'homechef', 'user'], default: 'user' },
-    name: String,
+    // type: { type: String, enum: ['restaurant', 'homechef', 'user'], default: 'user' },
+    type: { type: String, required: true },
+    name: { type: String, required: true },
     adress: String,
     city: String,
     cp: String,
-    mail: String,
+    mail: { type: String, required: true },
     telf: String,
     delivery: Boolean,
     premiumUser: Boolean,
-    password: String,
+    password: { type: String, required: true },
     products: { type: Array, default: [] },
     valuations: { type: Array, default: [] },
     finalValuation: Number,
