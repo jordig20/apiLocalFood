@@ -13,6 +13,10 @@ app.set('port', process.env.PORT || 3000);
 
 // Middlewares
 app.use(express.json());
+app.use(express.raw({
+    type: 'image/*',
+    limit: '1mb',
+}));
 app.use(express.urlencoded({ extended: false }));
 
 // Configurar cabeceras y cors

@@ -13,9 +13,9 @@ class UserController {
             const { type, name, adress, city, cp, mail, telf, delivery, premiumUser, password, products, valuations, finalValuation } = req.body;
             const user: User = new UserModel({ type, name, adress, city, cp, mail, telf, delivery, premiumUser, password, products, valuations, finalValuation });
             await user.save();
-            res.send(`${user._id} Saved`);
+            res.status(200).send(`${user._id} Saved`);
         } catch (e) {
-            res.send(e);
+            res.status(500).send(e);
         }
 
     }
@@ -26,9 +26,9 @@ class UserController {
             const city: string = req.params.nameCity.toLowerCase().trim();
             const type: string = req.params.type.toLowerCase().trim();
             const users: User[] = await UserModel.find({ city: city, type: type });
-            res.send(users);
+            res.status(200).send(`${users}`);
         } catch (e) {
-            res.send(e);
+            res.status(500).send(e);
         }
     }
 
@@ -80,9 +80,9 @@ class UserController {
         const id = new ObjectId(req.params.id);
         try {
             const users: User[] = await UserModel.find({ _id: id });
-            res.send(users);
+            res.status(200).send(users);
         } catch (e) {
-            res.send(e);
+            res.status(500).send(e);
         }
     }
 }

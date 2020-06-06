@@ -58,6 +58,14 @@ class ProductController {
             }
         });
     }
+
+    // Añade imagen al producto
+    public async addImage(req: Request, res: Response) {
+        console.log(req.body);
+        res.json({ url: 'blabla' });
+    }
+
+
 }
 
 export const product = new ProductController();
