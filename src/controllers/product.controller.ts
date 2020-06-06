@@ -58,6 +58,17 @@ class ProductController {
             }
         });
     }
+
+
+    public async getOne(req: Request, res: Response) {
+        const id = new ObjectId(req.params.id);
+        try {
+            const products: Product[] = await ProductModel.find({ _id: id });
+            res.send(products);
+        } catch (e) {
+            res.send(e);
+        }
+    }
 }
 
 export const product = new ProductController();
