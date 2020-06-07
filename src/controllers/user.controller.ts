@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 import UserModel, { User } from '../models/user.model';
+import { response } from '../lib/validation';
+
 
 const ObjectId = require('mongoose').Types.ObjectId;
 
@@ -13,7 +15,7 @@ class UserController {
             const { type, name, adress, city, cp, mail, telf, delivery, premiumUser, password, products, valuations, finalValuation } = req.body;
             const user: User = new UserModel({ type, name, adress, city, cp, mail, telf, delivery, premiumUser, password, products, valuations, finalValuation });
             await user.save();
-            res.status(200).send(`${user._id} Saved`);
+            response(res, 200, `${user._id} Saved`);
         } catch (e) {
             res.status(500).send(e);
         }

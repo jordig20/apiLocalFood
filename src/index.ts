@@ -4,6 +4,7 @@ import IndexRoutes from './routes';
 import UserRoutes from './routes/user';
 import ProductRoutes from './routes/product';
 import './database';
+import bodyParser = require('body-parser');
 
 // Inicializaciones
 const app = express();
@@ -12,7 +13,8 @@ const app = express();
 app.set('port', process.env.PORT || 3000);
 
 // Middlewares
-app.use(express.json());
+app.use(bodyParser.json({ limit: '2000mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '2000mb' }));
 app.use(express.raw({
     type: 'image/*',
     limit: '1mb',

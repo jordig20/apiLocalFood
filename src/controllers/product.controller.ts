@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import ProductModel, { Product } from '../models/product.model';
 import UserModel, { User } from '../models/user.model';
 
+
 const ObjectId = require('mongoose').Types.ObjectId;
 
 class ProductController {
