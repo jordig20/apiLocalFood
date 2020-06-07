@@ -54,7 +54,7 @@ class ProductController {
                     if (err) {
                         response(res, 500, 'Error');
                     } else {
-                        response(res, 200, products);
+                        res.status(200).send(products);
                     }
                 });
             }
