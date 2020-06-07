@@ -23,14 +23,25 @@ class UserController {
     }
 
     // Devuelve usuarios por ciudad
+    // public async getUsersCity(req: Request, res: Response) {
+    //     try {
+    //         const city: string = req.params.nameCity.toLowerCase().trim();
+    //         const type: string = req.params.type.toLowerCase().trim();
+    //         const users: User[] = await UserModel.find({ city: city, type: type });
+    //         res.status(200).send(`${users}`);
+    //     } catch (e) {
+    //         res.status(500).send(e);
+    //     }
+    // }
+
     public async getUsersCity(req: Request, res: Response) {
         try {
             const city: string = req.params.nameCity.toLowerCase().trim();
             const type: string = req.params.type.toLowerCase().trim();
             const users: User[] = await UserModel.find({ city: city, type: type });
-            res.status(200).send(`${users}`);
+            res.send(users);
         } catch (e) {
-            res.status(500).send(e);
+            res.send(e);
         }
     }
 
