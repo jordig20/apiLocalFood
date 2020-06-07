@@ -35,9 +35,9 @@ class ProductController {
         await ProductModel.findByIdAndUpdate(id, update, { new: true },
             (err, todo) => {
                 if (err) {
-                    return res.status(500).send(err);
+                    response(res, 500, { error: 'Error 500' });
                 }
-                return res.status(200).send('OK');
+                response(res, 200, 'Ok');
             },
         );
     }
@@ -52,9 +52,9 @@ class ProductController {
                 let result = users.map(user => user._id);
                 await ProductModel.find({ userId: { $in: result } }, (err, products) => {
                     if (err) {
-                        return res.status(500).send(err);
+                        response(res, 500, 'Error');
                     } else {
-                        return res.status(200).send(products);
+                        response(res, 200, products);
                     }
                 });
             }

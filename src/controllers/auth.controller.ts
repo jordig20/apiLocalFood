@@ -29,7 +29,8 @@ class AuthController {
             return res.status(401).send('Contraseña erronea');
         }
         const token = jwt.sign({ _id: user._id }, '6F&@u0}YP)~w1I$$sZ]9');
-        return res.status(200).json({ token });
+        const id = user._id;
+        return res.status(200).json({ token, id });
     }
 
     public async verify(req: Request, res: Response) {
