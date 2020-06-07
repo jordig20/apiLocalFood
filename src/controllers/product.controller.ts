@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import ProductModel, { Product } from '../models/product.model';
 import UserModel, { User } from '../models/user.model';
+import { response } from '../lib/validation';
 
 
 const ObjectId = require('mongoose').Types.ObjectId;
@@ -11,7 +12,7 @@ class ProductController {
             const { type, name, price, userId, valuations, finalValuation, ingredients, description } = req.body;
             const product: Product = new ProductModel({ type, name, price, userId, valuations, finalValuation, ingredients, description });
             await product.save();
-            res.send(`${product} Saved`);
+            response(res, 200, `${product} Saved`);
         } catch (e) {
             res.send(e);
         }
@@ -59,6 +60,7 @@ class ProductController {
             }
         });
     }
+
     public async getOne(req: Request, res: Response) {
         const id = new ObjectId(req.params.id);
         try {

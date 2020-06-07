@@ -3,6 +3,7 @@ import express from 'express';
 import IndexRoutes from './routes';
 import UserRoutes from './routes/user';
 import ProductRoutes from './routes/product';
+import AuthRoutes from './routes/auth';
 import './database';
 import bodyParser = require('body-parser');
 
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 app.use('/', IndexRoutes);
 app.use('/user', UserRoutes);
 app.use('/product', ProductRoutes);
+app.use('/auth', AuthRoutes);
 
 // Start Server
 app.listen(app.get('port'), () => {

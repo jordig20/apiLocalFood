@@ -15,6 +15,8 @@ const UserSchema = new Schema({
     products: { type: Array, default: [] },
     valuations: { type: Array, default: [] },
     finalValuation: Number,
+}, {
+    timestamps: true,
 });
 
 export interface User extends mongoose.Document {
