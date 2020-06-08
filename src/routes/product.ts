@@ -10,6 +10,7 @@ router.get('/getone/:id', product.getOne);
 router.get('/:city', product.getProductsByCity);
 router.post('/add', product.addProduct);
 router.put('/update/:id', product.update);
+router.delete('/delete/:id', product.delete);
 // router.put('/image/:id', product.addImage);
 
 export default router;

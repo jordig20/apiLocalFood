@@ -70,6 +70,17 @@ class ProductController {
             res.send(e);
         }
     }
+
+    public async delete(req: Request, res: Response) {
+        const id = new ObjectId(req.params.id);
+        try {
+            await ProductModel.remove({ _id: id });
+            res.send(`Producto ${id} eliminado.`);
+        } catch (e) {
+            res.send(e);
+        }
+    }
+
 }
 
 export const product = new ProductController();

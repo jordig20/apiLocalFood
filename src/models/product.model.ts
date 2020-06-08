@@ -9,6 +9,7 @@ const ProductSchema = new Schema({
     finalValuation: Number,
     ingredients: String,
     description: String,
+    imageUrl: String,
 });
 
 export interface Product extends mongoose.Document {
@@ -20,6 +21,7 @@ export interface Product extends mongoose.Document {
     finalValuation: number,
     ingredients: string,
     description: string,
+    imageUrl: string,
 }
 
 export default model<Product>('Product', ProductSchema);
