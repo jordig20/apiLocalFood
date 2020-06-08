@@ -75,7 +75,7 @@ class ProductController {
         const id = new ObjectId(req.params.id);
         try {
             await ProductModel.remove({ _id: id });
-            res.send(`Producto ${id} eliminado.`);
+            response(res, 200, `Producto ${id} eliminado.`);
         } catch (e) {
             res.send(e);
         }
