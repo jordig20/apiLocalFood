@@ -15,6 +15,7 @@ const UserSchema = new Schema({
     products: { type: Array, default: [] },
     valuations: { type: Array, default: [] },
     finalValuation: Number,
+    imageUrl: String,
 }, {
     timestamps: true,
 });
@@ -33,6 +34,7 @@ export interface User extends mongoose.Document {
     products: [],
     valuations: [],
     finalValuation: number,
+    imageUrl: string,
 }
 
 export default model<User>('User', UserSchema);
