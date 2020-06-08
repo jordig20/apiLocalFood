@@ -11,8 +11,8 @@ class AuthController {
 
     // Crear usuario y devuelve token
     public async createUser(req: Request, res: Response) {
-        const { type, name, mail, password } = req.body;
-        const newUser: User = new UserModel({ type, name, mail, password });
+        const { type, name, mail, password, city } = req.body;
+        const newUser: User = new UserModel({ type, name, mail, password, city });
         await newUser.save();
         const token = jwt.sign({ _id: newUser._id }, '6F&@u0}YP)~w1I$$sZ]9');
         return res.status(200).json({ token });
